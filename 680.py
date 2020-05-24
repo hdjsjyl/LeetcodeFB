@@ -7,7 +7,7 @@ Input: "aba"
 Output: True
 """
 
-# solution: time complexity: O(n)
+# solution1 iteration: time complexity: O(n)
 class Solution:
     def validPalindrome(self, s: str) -> bool:
         left = 0
@@ -31,5 +31,27 @@ class Solution:
                 right -= 1
             else:
                 return False
+
+        return True
+
+
+# solution2 recursive: time complexity: O(n)
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        k = 1
+        return self.helper(s, 0, len(s) - 1, k)
+
+    def helper(self, s, left, right, k):
+        if k < 0:
+            return False
+        if left >= right or right < 0 or left >= len(s):
+            return True
+
+        while left < right:
+            if s[left] == s[right]:
+                left += 1
+                right -= 1
+            else:
+                return self.helper(s, left + 1, right, k - 1) or self.helper(s, left, right - 1, k - 1)
 
         return True
