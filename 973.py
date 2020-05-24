@@ -49,8 +49,6 @@ class Solution:
 # each time, pop the point with the largest distance to the original coordinate
 
 import heapq
-
-
 class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         dislist = []
