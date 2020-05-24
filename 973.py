@@ -41,3 +41,29 @@ class Solution:
         elif p[-1] < dis[right][-1]:
             return right
         return right + 1
+
+# Solution2: time complexity is O(nlogK)
+# n is the length of points list
+# using heap to maintain a heap with length of K
+# each upate of heap cost logK time
+# each time, pop the point with the largest distance to the original coordinate
+
+import heapq
+
+
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        dislist = []
+        heapq.heapify(dislist)
+        for p in points:
+            dis = p[0] ** 2 + p[1] ** 2
+            heapq.heappush(dislist, [-dis, p])
+            if len(dislist) > K:
+                heapq.heappop(dislist)
+
+        res = []
+        while dislist:
+            tmp = heapq.heappop(dislist)
+            res.append(tmp[1])
+
+        return res
