@@ -22,7 +22,7 @@ class Solution:
         return True
 
     def helper(self, s, left, right):
-        if left >= len(s) or right < 0 or left >= right:
+        if left == right:
             return True
 
         while left < right:
@@ -44,7 +44,7 @@ class Solution:
     def helper(self, s, left, right, k):
         if k < 0:
             return False
-        if left >= right or right < 0 or left >= len(s):
+        if left == right:
             return True
 
         while left < right:
