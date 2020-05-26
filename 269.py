@@ -57,8 +57,6 @@ class Solution:
 
             stack.sort()
 
-        # print(len(res), len(degree))
-
         if len(res) == len(degree):
             return res
         return ''
