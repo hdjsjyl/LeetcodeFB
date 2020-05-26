@@ -9,7 +9,9 @@ Output: [[1,6],[8,10],[15,18]]
 Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
 """
 
-# solution: time complexity: O(nlogn)
+# solution: time complexity: O(nlogn) + O(n)
+# O(nlogn) is the time complexity of sorting algorithm
+# O(n) is the time complexity of accessing to the element
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         if not intervals:
