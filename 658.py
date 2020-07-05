@@ -24,7 +24,7 @@ class Solution:
             else:
                 arr.pop(-1)
 
-        return arr
+        return arr  
 
 
 ## binary search , TC: O(logn)
