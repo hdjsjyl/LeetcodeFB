@@ -45,3 +45,44 @@ class Solution:
         for i in range(self.mins, self.maxs + 1):
             res.append([v for k, v in sorted(dicts[i])])
         return res
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+from collections import defaultdict
+
+
+class Solution:
+    def __init__(self):
+        self.mins = float('inf')
+        self.maxs = float('-inf')
+
+    def helper(self, root, x, y, dicts):
+        if not root:
+            return
+        dicts[x].append([y, root.val])
+        self.mins = min(self.mins, x)
+        self.maxs = max(self.maxs, x)
+        self.helper(root.left, x - 1, y - 1, dicts)
+        self.helper(root.right, x + 1, y - 1, dicts)
+
+    def cmp(self, v1, v2):
+        if v1[0] != v2[0]:
+            return v2[0] - v1[0]
+        else:
+            return v1[1] - v2[1]
+
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        dicts = defaultdict(list)
+        self.helper(root, 0, 0, dicts)
+        res = []
+        for i in range(self.mins, self.maxs + 1):
+            res.append([v for k, v in sorted(dicts[i], key=cmp_to_key(self.cmp))])
+        return res
